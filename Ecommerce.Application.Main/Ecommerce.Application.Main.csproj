@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.Application.DTO\Ecommerce.Application.DTO.csproj" />
+    <ProjectReference Include="..\Ecommerce.Application.Interface\Ecommerce.Application.Interface.csproj" />
+    <ProjectReference Include="..\Ecommerce.Domain.Entity\Ecommerce.Domain.Entity.csproj" />
+    <ProjectReference Include="..\Ecommerce.Domain.Interface\Ecommerce.Domain.Interface.csproj" />
+    <ProjectReference Include="..\Ecommerce.Transversal.Common\Ecommerce.Transversal.Common.csproj" />
+  </ItemGroup>
+
+</Project>
