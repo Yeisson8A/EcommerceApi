@@ -14,11 +14,13 @@ namespace Ecommerce.Application.Main
     {
         private readonly ICustomersDomain _customersDomain;
         private readonly IMapper _mapper;
+        private readonly IAppLogger<CustomersApplication> _logger;
 
-        public CustomersApplication(ICustomersDomain customersDomain, IMapper mapper)
+        public CustomersApplication(ICustomersDomain customersDomain, IMapper mapper, IAppLogger<CustomersApplication> logger)
         {
             _customersDomain = customersDomain;
             _mapper = mapper;
+            _logger = logger;
         }
 
         #region Métodos Síncronos
@@ -36,11 +38,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "El registro ha sido exitoso";
+                    _logger.LogInformation("El registro ha sido exitoso");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -58,11 +62,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "La actualización ha sido exitosa";
+                    _logger.LogInformation("La actualización ha sido exitosa");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -79,11 +85,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "La eliminación ha sido exitosa";
+                    _logger.LogInformation("La eliminación ha sido exitosa");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -101,11 +109,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "La consulta ha sido exitosa";
+                    _logger.LogInformation("La consulta ha sido exitosa");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -123,11 +133,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "La consulta ha sido exitosa";
+                    _logger.LogInformation("La consulta ha sido exitosa");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -149,11 +161,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "El registro ha sido exitoso";
+                    _logger.LogInformation("El registro ha sido exitoso");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -171,11 +185,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "La actualización ha sido exitosa";
+                    _logger.LogInformation("La actualización ha sido exitosa");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -192,11 +208,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "La eliminación ha sido exitosa";
+                    _logger.LogInformation("La eliminación ha sido exitosa");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -214,11 +232,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "La consulta ha sido exitosa";
+                    _logger.LogInformation("La consulta ha sido exitosa");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }
@@ -236,11 +256,13 @@ namespace Ecommerce.Application.Main
                 {
                     response.IsSuccess = true;
                     response.Message = "La consulta ha sido exitosa";
+                    _logger.LogInformation("La consulta ha sido exitosa");
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                _logger.LogError(e.Message);
             }
             return response;
         }

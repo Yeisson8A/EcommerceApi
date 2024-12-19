@@ -1,47 +1,27 @@
-using AutoMapper;
-using Ecommerce.Application.Interface;
-using Ecommerce.Application.Main;
-using Ecommerce.Domain.Core;
-using Ecommerce.Domain.Interface;
-using Ecommerce.Infrastructure.Data;
-using Ecommerce.Infrastructure.Interface;
-using Ecommerce.Infrastructure.Repository;
-using Ecommerce.Services.WebApi.Helpers;
-using Ecommerce.Transversal.Common;
-using Ecommerce.Transversal.Mapper;
+using Ecommerce.Services.WebApi.Modules.Authentication;
+using Ecommerce.Services.WebApi.Modules.Feature;
+using Ecommerce.Services.WebApi.Modules.Injection;
+using Ecommerce.Services.WebApi.Modules.Mapper;
+using Ecommerce.Services.WebApi.Modules.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Agregar automapper
-builder.Services.AddAutoMapper(x => x.AddProfile(new MappingsProfile()));
-// Agregar instancia de conexión a la base de datos
-builder.Services.AddSingleton<IConnectionFactory, ConnectionFactory>();
-// Configuración de los valores de la sección "Config" del appsettings.json
-builder.Services.Configure<ConfigurationSettings>(builder.Configuration.GetSection("Config"));
-// Agregar instancias de aplicación
-builder.Services.AddScoped<ICustomersApplication, CustomersApplication>();
-builder.Services.AddScoped<IUsersApplication, UsersApplication>();
-// Agregar instancias de dominio
-builder.Services.AddScoped<ICustomersDomain, CustomersDomain>();
-builder.Services.AddScoped<IUsersDomain, UsersDomain>();
-// Agregar instancias de repositorio
-builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
-builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+// Configuración automapper
+builder.Services.AddMapper();
+// Configuracipon inyección de dependencias
+builder.Services.AddInjection();
+// Configuración autenticación
+builder.Services.AddAuthentication(builder.Configuration);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Habilitar CORS para acceso externo
-builder.Services.AddCors(opt =>
-{
-    opt.AddPolicy("CorsRule", rule =>
-    {
-        rule.AllowAnyHeader().AllowAnyMethod().WithOrigins(builder.Configuration["Config:OriginCors"]);
-    });
-});
+// Configuración swagger
+builder.Services.AddSwagger();
+// Configuración CORS
+builder.Services.AddFeature(builder.Configuration);
 
 var app = builder.Build();
 app.UseCors("CorsRule");
@@ -53,6 +33,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthorization();
 
 app.MapControllers();
 

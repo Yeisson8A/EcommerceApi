@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.3.0" />
   </ItemGroup>
@@ -24,6 +25,7 @@
     <ProjectReference Include="..\Ecommerce.Infrastructure.Interface\Ecommerce.Infrastructure.Interface.csproj" />
     <ProjectReference Include="..\Ecommerce.Infrastructure.Repository\Ecommerce.Infrastructure.Repository.csproj" />
     <ProjectReference Include="..\Ecommerce.Transversal.Common\Ecommerce.Transversal.Common.csproj" />
+    <ProjectReference Include="..\Ecommerce.Transversal.Logging\Ecommerce.Transversal.Logging.csproj" />
     <ProjectReference Include="..\Ecommerce.Transversal.Mapper\Ecommerce.Transversal.Mapper.csproj" />
   </ItemGroup>
 
