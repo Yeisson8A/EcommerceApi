@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
 
 namespace Ecommerce.Services.WebApi.Modules.Swagger
 {
@@ -9,31 +10,26 @@ namespace Ecommerce.Services.WebApi.Modules.Swagger
             // Agregar a swagger autenticación con token JWT
             services.AddSwaggerGen(c =>
             {
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                var securityScheme = new OpenApiSecurityScheme
                 {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
+                    Description = "Enter JWT Bearer token **_only_**",
                     In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                });
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+
+                c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            },
-                            Scheme = "oauth2",
-                            Name = "Bearer",
-                            In = ParameterLocation.Header,
-                        },
-                        new List<string>()
-                    }
+                    { securityScheme, new List<string>() { } }
                 });
             });
             return services;

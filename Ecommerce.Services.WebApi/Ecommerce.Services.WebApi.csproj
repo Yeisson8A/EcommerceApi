@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Ecommerce.Application.DTO\Ecommerce.Application.DTO.csproj" />
     <ProjectReference Include="..\Ecommerce.Application.Interface\Ecommerce.Application.Interface.csproj" />
     <ProjectReference Include="..\Ecommerce.Application.Main\Ecommerce.Application.Main.csproj" />
+    <ProjectReference Include="..\Ecommerce.Application.Validator\Ecommerce.Application.Validator.csproj" />
     <ProjectReference Include="..\Ecommerce.Domain.Core\Ecommerce.Domain.Core.csproj" />
     <ProjectReference Include="..\Ecommerce.Domain.Entity\Ecommerce.Domain.Entity.csproj" />
     <ProjectReference Include="..\Ecommerce.Domain.Interface\Ecommerce.Domain.Interface.csproj" />

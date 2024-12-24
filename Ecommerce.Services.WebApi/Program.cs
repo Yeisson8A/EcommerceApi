@@ -3,6 +3,7 @@ using Ecommerce.Services.WebApi.Modules.Feature;
 using Ecommerce.Services.WebApi.Modules.Injection;
 using Ecommerce.Services.WebApi.Modules.Mapper;
 using Ecommerce.Services.WebApi.Modules.Swagger;
+using Ecommerce.Services.WebApi.Modules.Validator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
 // Configuración CORS
 builder.Services.AddFeature(builder.Configuration);
+// Configuración fluent validation
+builder.Services.AddValidator();
 
 var app = builder.Build();
 app.UseCors("CorsRule");

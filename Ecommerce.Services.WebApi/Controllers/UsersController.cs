@@ -44,7 +44,7 @@ namespace Ecommerce.Services.WebApi.Controllers
                     return NotFound(response.Message);
                 }
             }
-            return BadRequest();
+            return BadRequest(response);
         }
 
         private string BuildToken(Response<UsersDto> usersDto)
